@@ -1,0 +1,7 @@
+.graph-container {
+    background-color: #fff;
+    width: 100%;
+    padding: 30px;
+    border-radius: 0px 0px 0px 20px;
+    border-right: 2px solid #d3d3d3;
+}

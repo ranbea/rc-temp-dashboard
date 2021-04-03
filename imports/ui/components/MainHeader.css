@@ -1,0 +1,14 @@
+.main-header {
+    background-color: #fff;
+    width: 100%;
+    padding: 20px;
+    border-radius: 20px 20px 0px 0px;
+    border-bottom: 2px solid #afafaf;
+    z-index: 2;
+}
+
+.main-header-text {
+    color: #686868;
+    font-weight: 600!important;
+    padding-left: 40px;
+}

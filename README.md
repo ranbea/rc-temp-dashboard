@@ -3,7 +3,7 @@ Custom dashboard for monitoring room temperatures for residental colleges, for C
 
 // More details about the project here
 
-This project was created using Meteor.
+This project was created using Meteor, styled using Bootstrap.
 
 # Getting Started
 1. [Ensure you have Meteor installed](https://react-tutorial.meteor.com/simple-todos/01-creating-app.html#1-1-Install-Meteor)

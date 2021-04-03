@@ -1,0 +1,27 @@
+
+.date-picker-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.date-picker, 
+.time-picker {
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 80%;
+}
+
+.time-picker-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 16px!important;
+    margin-bottom: 8px!important;
+    flex-direction: column;
+}
+
+#slider {
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 12px !important;
+    margin-top: 14px;
+    margin-bottom: 16px;
+}
