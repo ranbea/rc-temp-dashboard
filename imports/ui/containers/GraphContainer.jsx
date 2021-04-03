@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, Typography } from '@material-ui/core';
 
 import './GraphContainer.css';
-import SectionHeader from './SectionHeaderContainer';
+import SectionHeader from '../components/SectionHeader.jsx';
 
 const GraphContainer = ({ children }) => {
     return(

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Typography } from '@material-ui/core';
 
-import SectionHeader from './SectionHeaderContainer';
+import SectionHeader from '../components/SectionHeader.jsx';
 import './FloorplanContainer.css'
 
 const FloorplanContainer = ({ children }) => {

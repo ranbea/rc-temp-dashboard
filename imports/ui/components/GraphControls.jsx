@@ -2,11 +2,10 @@ import 'date-fns';
 import React from 'react';
 import DateFnsUtils from '@date-io/date-fns';
 
-import { Grid, Box, Typography, Slider, TextField } from '@material-ui/core';
+import { Grid, Typography, Slider, TextField } from '@material-ui/core';
 import { 
     MuiPickersUtilsProvider,
     KeyboardDatePicker,
-    KeyboardTimePicker,
 } from '@material-ui/pickers';
 
 import './GraphController.css';
