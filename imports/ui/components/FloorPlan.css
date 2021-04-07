@@ -7,9 +7,8 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     display: flex;
-    text-align: center;
 }
 
-.room-cell {
-    background-color: #E4E4E4;
+.large-room-container {
+    width: calc(100% * 2.5 / 6);
 }

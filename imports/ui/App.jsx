@@ -5,6 +5,7 @@ import GraphContainer from './containers/GraphContainer.jsx';
 import FloorPlanContainer from './containers/FloorPlanContainer.jsx';
 import GraphControls from './components/GraphControls.jsx';
 import FloorPlan from "./components/FloorPlan.jsx";
+import './index.css';
 
 export const App = () => {
 	return(
