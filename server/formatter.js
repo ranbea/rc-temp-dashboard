@@ -22,22 +22,24 @@ export function formatData(data) {
         }
     );
 
-    console.log(formattedData[0]["temp"]["6"]);
-
     /**
      * For each distinct date, traverse all data in the unformatted data
      * If the date of the row being looked at == distinct date being looked at
      * add the room temp into the array
      */
-    for (let i = 0; formattedData.length; i++) {
+    for (let i = 0; i < formattedData.length; i++) {
         for (let j = 0; j < data.length; j++) {
             var d1 = new Date(data[j][1]);
-            var d2 = formattedData[i]?.date;
+            try {
+            var d2 = formattedData[i]["date"];
+            } catch (e) {
+                console.log(i);
+            }
             if (isSameDate(d1, d2)) {
                 const roomID = data[j][0];
                 const temp = parseFloat(data[j][2]);
-                console.log(roomID);
-                console.log(temp);
+                // console.log(roomID);
+                // console.log(temp);
                 formattedData[i]["temp"][roomID] = temp;
             }
         }
