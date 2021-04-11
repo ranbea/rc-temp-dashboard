@@ -1,27 +1,15 @@
 import { Meteor } from 'meteor/meteor';
 import { Data } from '../imports/api/data.js';
-
-const fs = require('fs');
-const Parser = require('papaparse');
-const data = fs.createReadStream('./data/room-temperatures.csv');
-
-var parsed_data;
+import { formatData } from './formatter.js';
+import * as Papa from 'papaparse';
 
 /**
  * Method that runs whenever meteor starts up
  */
 Meteor.startup(() => {
-    parsed_data = Parser.parse(data, {
-        header: true,
-        worker: true,
-        dynamicTyping: true,
-        step: (row) => {
-            console.log("Row: " + row.data);
-        },
-        complete: () => {
-            console.log("Done");
-        }
-    });
-});
+    const data_file = Assets.getText('room-temperatures.csv');
+    const parsed_data = Papa.parse(data_file).data;
+    const formatted_data = formatData(parsed_data);
 
-export default parsed_data;
+    console.log(formatted_data);
+});
