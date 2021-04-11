@@ -1,0 +1,7 @@
+svg:hover {
+    filter: url("#outer-drop-shadow");
+}
+
+svg:active {
+    filter: url("#inset-shadow");
+}

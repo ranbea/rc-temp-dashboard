@@ -1,0 +1,19 @@
+.unused-area-image {
+    max-width: 100%;
+    height: auto;
+}
+
+
+.small-rooms-container {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    display: flex;
+    position: relative;
+    top: -2vw;
+}
+
+.large-room-container {
+    width: calc(100% * 2.5 / 6);
+    position: relative;
+    top: 7.75vw;
+}

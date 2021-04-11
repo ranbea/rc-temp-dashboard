@@ -1,10 +1,11 @@
 import React from 'react';
+import { Container, Grid } from '@material-ui/core';
 import MainHeader from './components/MainHeader.jsx';
 import GraphContainer from './containers/GraphContainer.jsx';
-import FloorplanContainer from './containers/FloorplanContainer.jsx';
-import { Container, Grid} from '@material-ui/core';
+import FloorPlanContainer from './containers/FloorPlanContainer.jsx';
 import GraphControls from './components/GraphControls.jsx';
-
+import FloorPlan from "./components/FloorPlan.jsx";
+import './index.css';
 
 export const App = () => {
 	return(
@@ -14,9 +15,9 @@ export const App = () => {
 				<GraphContainer>
 					<GraphControls/>
 				</GraphContainer>
-				<FloorplanContainer>
-				
-				</FloorplanContainer>
+				<FloorPlanContainer>
+					<FloorPlan/>
+				</FloorPlanContainer>
 			</Grid>
 		</Container>
   	);
