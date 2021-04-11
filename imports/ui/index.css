@@ -1,0 +1,10 @@
+@font-face {
+    font-family: RobotoMono;
+    src: url("/fonts/RobotoMono.ttf");
+}
+
+@font-face {
+    font-family: OpenSans;
+    src: url("/fonts/OpenSans-SemiBold.ttf");
+    font-weight: 600;
+}

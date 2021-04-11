@@ -4,13 +4,13 @@ import { Grid, Typography } from '@material-ui/core';
 import SectionHeader from '../components/SectionHeader.jsx';
 import './FloorplanContainer.css'
 
-const FloorplanContainer = ({ children }) => {
+const FloorPlanContainer = ({ children }) => {
     return(
-        <Grid className="floorplan-container" container item xs={5}>
-            <SectionHeader name="Floorplan"/>
+        <Grid className="floor-plan-container" container item xs={5}>
+            <SectionHeader name="Floor Plan"/>
             { children }
         </Grid>
     );
 }
 
-export default FloorplanContainer;
+export default FloorPlanContainer;
