@@ -10,13 +10,13 @@ export function formatData(data) {
             return ({
                 "date": d,
                 "temp": {
-                    "0": 0.000,
-                    "1": 0.000,
-                    "2": 0.000,
-                    "3": 0.000,
-                    "4": 0.000,
-                    "5": 0.000,
-                    "6": 0.000
+                    "0": 1.000,
+                    "1": 1.000,
+                    "2": 1.000,
+                    "3": 1.000,
+                    "4": 1.000,
+                    "5": 1.000,
+                    "6": 1.000
                 }
             });
         }
@@ -29,17 +29,11 @@ export function formatData(data) {
      */
     for (let i = 0; i < formattedData.length; i++) {
         for (let j = 0; j < data.length; j++) {
-            var d1 = new Date(data[j][1]);
-            try {
+            var d1 = new Date(data[j][1]);  // Date in 2nd col of CSV
             var d2 = formattedData[i]["date"];
-            } catch (e) {
-                console.log(i);
-            }
             if (isSameDate(d1, d2)) {
                 const roomID = data[j][0];
                 const temp = parseFloat(data[j][2]);
-                // console.log(roomID);
-                // console.log(temp);
                 formattedData[i]["temp"][roomID] = temp;
             }
         }

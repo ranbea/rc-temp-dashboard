@@ -1,4 +1,9 @@
 
+#dygraph {
+    height: 500px;
+    width: 800px;
+}
+
 .dygraph-container {
     margin-top: 50px;
     margin-bottom: 30px;
