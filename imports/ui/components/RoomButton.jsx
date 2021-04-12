@@ -7,6 +7,7 @@ const RoomButton = ({ roomNum, roomVisibilityCallback, isTempVisible, avgTemp })
   const COLOUR_COOLEST = "#D2E6FF";
   const COLOUR_WARMEST = "#779AC5";
   const COLOUR_DEFAULT = "#E4E4E4";
+  const COLOUR_NOT_APPLICABLE = "#FFFFFF";
 
   // The default min and max temperature range, used to calculate the colour of the cell
   const TEMPERATURE_MIN = 5;
@@ -21,20 +22,19 @@ const RoomButton = ({ roomNum, roomVisibilityCallback, isTempVisible, avgTemp })
   }
 
   /**
-   * Method to get the colour of the cell for the temperature at ${temp}, according to the cell's temperature
-   * visibility status
+   * Method to get the colour of the cell for the current average temperature
    */
-  const getColour = (temp) => {
+  const getColour = () => {
     if (!isTempVisible) {
       return COLOUR_DEFAULT;
     }
 
-    if (Number.isNaN(temp) || temp < TEMPERATURE_MIN || temp > TEMPERATURE_MAX)
+    if (Number.isNaN(avgTemp))
     {
-      return COLOUR_DEFAULT;
+      return COLOUR_NOT_APPLICABLE;
     }
 
-    const ratio = temp / TEMPERATURE_RANGE;
+    const ratio = avgTemp / TEMPERATURE_RANGE;
     return lerpColour(COLOUR_COOLEST, COLOUR_WARMEST, ratio);
   }
 
@@ -65,13 +65,23 @@ const RoomButton = ({ roomNum, roomVisibilityCallback, isTempVisible, avgTemp })
     return "#" + mixedHex;
   }
 
+  /**
+   * Method to get the current average temperature, formatted to 1 decimal place
+   */
+  const getFormattedTemp = () => {
+    if (Number.isNaN(avgTemp)) {
+      return "N/A";
+    }
+    return avgTemp.toFixed(1);
+  }
+
   return (
     <>
       <svg height="10vw" width="100%" xmlns="http://www.w3.org/2000/svg" onClick={handleButtonClick}>
         <rect
           width="100%"
           height="100%"
-          fill={getColour(avgTemp)}
+          fill={getColour()}
           stroke="#5A5A5A"
           strokeWidth='1px'
         />
@@ -97,7 +107,7 @@ const RoomButton = ({ roomNum, roomVisibilityCallback, isTempVisible, avgTemp })
             textAnchor="middle"
             dominantBaseline="middle"
           >
-            {avgTemp.toFixed(1)}
+            {getFormattedTemp()}
           </text>
         )}
         <defs>
