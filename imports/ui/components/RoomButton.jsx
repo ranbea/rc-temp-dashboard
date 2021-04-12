@@ -28,6 +28,12 @@ const RoomButton = ({ roomNum, roomVisibilityCallback, isTempVisible, avgTemp })
     if (!isTempVisible) {
       return COLOUR_DEFAULT;
     }
+
+    if (Number.isNaN(temp) || temp < TEMPERATURE_MIN || temp > TEMPERATURE_MAX)
+    {
+      return COLOUR_DEFAULT;
+    }
+
     const ratio = temp / TEMPERATURE_RANGE;
     return lerpColour(COLOUR_COOLEST, COLOUR_WARMEST, ratio);
   }
@@ -61,7 +67,7 @@ const RoomButton = ({ roomNum, roomVisibilityCallback, isTempVisible, avgTemp })
 
   return (
     <>
-      <svg height="10vw" width="100%" onClick={handleButtonClick}>
+      <svg height="10vw" width="100%" xmlns="http://www.w3.org/2000/svg" onClick={handleButtonClick}>
         <rect
           width="100%"
           height="100%"
