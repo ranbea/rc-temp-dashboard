@@ -4,8 +4,8 @@ import "./RoomButton.css";
 const RoomButton = ({ roomNum, roomVisibilityCallback, isTempVisible, avgTemp }) => {
 
   // The colour codes for the cell background
-  const COLOUR_COOLEST = "#D2E6FF";
-  const COLOUR_WARMEST = "#779AC5";
+  const COLOUR_COOLEST = "#4BF4FF";
+  const COLOUR_WARMEST = "#4087DA";
   const COLOUR_DEFAULT = "#E4E4E4";
   const COLOUR_NOT_APPLICABLE = "#FFFFFF";
 
@@ -83,7 +83,7 @@ const RoomButton = ({ roomNum, roomVisibilityCallback, isTempVisible, avgTemp })
           height="100%"
           fill={getColour()}
           stroke="#5A5A5A"
-          strokeWidth='1px'
+          strokeWidth='0.5px'
         />
         <text
           x="95%"
@@ -112,12 +112,13 @@ const RoomButton = ({ roomNum, roomVisibilityCallback, isTempVisible, avgTemp })
         )}
         <defs>
           <filter id="outer-drop-shadow">
-            <feDropShadow dx="0" dy="0" stdDeviation="1" />
+            <feDropShadow floodColor="#575757" dx="0" dy="2" stdDeviation="0.75" result="shadow"/>
           </filter>
           <filter id="inset-shadow">
-            <feGaussianBlur stdDeviation="5" result="blur"/>
-            <feComposite operator="out" in="SourceGraphic" in2="blur" result="inverse"/>
-            <feFlood floodColor="black" floodOpacity="0.75" result="color"/>
+            <feGaussianBlur stdDeviation="1" result="blur"/>
+            <feOffset in="blur" dx="0" dy="2" result="offset"/>
+            <feComposite operator="out" in="SourceGraphic" in2="offset" result="inverse"/>
+            <feFlood floodColor="black" floodOpacity="1" result="color"/>
             <feComposite operator="in" in="color" in2="inverse" result="shadow"/>
             <feComposite operator="over" in="shadow" in2="SourceGraphic"/>
           </filter>
