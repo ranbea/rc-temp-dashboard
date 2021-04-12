@@ -4,13 +4,6 @@ import "./FloorPlan.css";
 
 const FloorPlan = ({ roomVisibility, roomVisibilityCallback, aveTemp }) => {
 
-  const TEMPORARY_MIN = 0;
-  const TEMPORARY_MAX = 50;
-
-  const getTemporaryNewTemp = () => {
-    return Math.random() * (TEMPORARY_MAX - TEMPORARY_MIN) + TEMPORARY_MIN;
-  }
-
   return (
     <>
       {/* TODO: remove weird margin between image and svg */}

@@ -1,29 +1,43 @@
 import React from 'react';
 import "./RoomButton.css";
 
-// callback is called upon button click, to change the graph's display
 const RoomButton = ({ roomNum, roomVisibilityCallback, isTempVisible, avgTemp }) => {
 
+  // The colour codes for the cell background
   const COLOUR_COOLEST = "#D2E6FF";
   const COLOUR_WARMEST = "#779AC5";
   const COLOUR_DEFAULT = "#E4E4E4";
 
-  const TEMPORARY_MIN = 0;
-  const TEMPORARY_MAX = 50;
-  const TEMPORARY_RANGE = TEMPORARY_MAX - TEMPORARY_MIN;
+  // The default min and max temperature range, used to calculate the colour of the cell
+  const TEMPERATURE_MIN = 5;
+  const TEMPERATURE_MAX = 30;
+  const TEMPERATURE_RANGE = TEMPERATURE_MAX - TEMPERATURE_MIN;
 
+  /**
+   * Handles the button click event on the box, to toggle the temperature visibility status of the room cell
+   */
   const handleButtonClick = () => {
     roomVisibilityCallback(roomNum, !isTempVisible);
   }
 
+  /**
+   * Method to get the colour of the cell for the temperature at ${temp}, according to the cell's temperature
+   * visibility status
+   */
   const getColour = (temp) => {
     if (!isTempVisible) {
       return COLOUR_DEFAULT;
     }
-    const ratio = temp / TEMPORARY_RANGE;
+    const ratio = temp / TEMPERATURE_RANGE;
     return lerpColour(COLOUR_COOLEST, COLOUR_WARMEST, ratio);
   }
 
+  /**
+   * Method to linearly interpolate between colours a and b, and return the colour at the requested ratio.
+   * Ratio is a value from [0, 1]
+   *
+   * Reference: https://www.alanzucconi.com/2016/01/06/colour-interpolation/
+   */
   const lerpColour = (a, b, ratio) => {
     const aHex = +a.replace('#', '0x');
     const bHex = +b.replace('#', '0x');
