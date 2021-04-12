@@ -1,7 +1,7 @@
 
 #dygraph {
-    height: 500px;
-    width: 800px;
+    height: 400px;
+    width: 1000px;
 }
 
 .dygraph-container {
@@ -26,7 +26,8 @@
 .dygraph-label-container {
     display: flex;
     width: 1000px;
-    margin: 20px auto;
+    margin-top: 20px;
+    margin-bottom: -10px;
     justify-items: center;
 }
 
