@@ -2,7 +2,7 @@ import React from 'react';
 import RoomButton from './RoomButton.jsx';
 import "./FloorPlan.css";
 
-const FloorPlan = ({ roomVisibility, roomVisibilityCallback }) => {
+const FloorPlan = ({ roomVisibility, roomVisibilityCallback, aveTemp }) => {
 
   const TEMPORARY_MIN = 0;
   const TEMPORARY_MAX = 50;
@@ -20,7 +20,7 @@ const FloorPlan = ({ roomVisibility, roomVisibilityCallback }) => {
             roomNum="0"
             isTempVisible={roomVisibility[0]}
             roomVisibilityCallback={roomVisibilityCallback}
-            avgTemp={getTemporaryNewTemp()}
+            avgTemp={aveTemp[0]}
           />
         </div>
         <img className="unused-area-image" alt="unused area" src="images/floorPlanUnusedSpace.png" />
@@ -33,7 +33,7 @@ const FloorPlan = ({ roomVisibility, roomVisibilityCallback }) => {
                       roomNum={index + 1}
                       isTempVisible={visible}
                       roomVisibilityCallback={roomVisibilityCallback}
-                      avgTemp={getTemporaryNewTemp()}
+                      avgTemp={aveTemp[index + 1]}
                       key={index}
                     />
                 )
