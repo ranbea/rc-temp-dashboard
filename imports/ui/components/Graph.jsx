@@ -5,7 +5,8 @@ import { Data } from '../../api/data.js';
 import { formatData, getAveTemp } from '../utils/DataUtil.js';
 import { Grid } from '@material-ui/core';
 import './Graph.css';
-import { graphHandler } from '../utils/GraphUtil';
+import { formatLegend, graphHandler } from '../utils/GraphUtil';
+import moment from 'moment';
 
 const Graph = ({
         startDate,
@@ -43,7 +44,21 @@ const Graph = ({
                     {
                         labels: ["Date/Time", "R0", "R1", "R2", "R3", "R4", "R5", "R6"],
                         legend: "always",
-                        interactionModel: graphHandler(setStartDate, setEndDate)
+                        labelsDiv: "dygraph-legend",
+                        legendFormatter: formatLegend,
+                        interactionModel: graphHandler(setStartDate, setEndDate),
+                        axes: {
+                            x: {
+                                axisLabelFormatter: function(x) {
+                                    return moment(x).format('DD/MM/YY hh:mm A');
+                                }
+                            },
+                            y: {
+                                axisLabelFormatter: function(y) {
+                                    return y.toFixed(1);
+                                }
+                            }
+                        }
                     }
                 )
             );
