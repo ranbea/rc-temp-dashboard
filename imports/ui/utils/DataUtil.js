@@ -2,7 +2,6 @@
  * Helper functions for formatting data from DB for Dygraph and FloorPlan
  */
 
-
 /**
  * 1. Trim data according to sample size
  * 2. Sort data in chronological order
@@ -30,23 +29,23 @@ export function formatData(data, sample) {
         intermediateData = data;
     }
 
-    var comparator = (a, b) => a.date - b.date;
+    const comparator = (a, b) => a.date - b.date;
     intermediateData = intermediateData.slice().sort(comparator);
 
-    const formattedData = [];
+    let formattedData = [];
 
-    for (let i = 0; i < data.length; i++) {
+    intermediateData.forEach((d) => {
         formattedData.push([
-            new Date(data[i]["date"]),
-            data[i]["temp"]["0"],
-            data[i]["temp"]["1"],
-            data[i]["temp"]["2"],
-            data[i]["temp"]["3"],
-            data[i]["temp"]["4"],
-            data[i]["temp"]["5"],
-            data[i]["temp"]["6"],
+            new Date(d["date"]),
+            d["temp"]["0"],
+            d["temp"]["1"],
+            d["temp"]["2"],
+            d["temp"]["3"],
+            d["temp"]["4"],
+            d["temp"]["5"],
+            d["temp"]["6"],
         ]);
-    }
+    });
     
     return formattedData;
 }

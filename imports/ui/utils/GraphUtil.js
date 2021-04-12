@@ -42,40 +42,6 @@ export function graphHandler(setStartDate, setEndDate) {
                 }
                 setStartDate(new Date(graph.xAxisRange()[0]));
                 setEndDate(new Date(graph.xAxisRange()[1]));
-            },
-
-        /**
-         * When user scrolling on the graph, zoom in
-         */
-        mousewheel: 
-            function(event, graph, context) {
-                calculateZoom(graph, event.wheelDelta > 0);  // delta > 0 = zoom in
-
-                setStartDate(new Date(graph.xAxisRange()[0]));
-                setEndDate(new Date(graph.xAxisRange()[1]));
-                event.preventDefauly();
-                event.stopPropagation();
             }
     })
-}
-
-/**
- * Helper function to calculate zoom for mousewheel scroll event
- */
-function calculateZoom(graph, zoomIn) {
-    var axis = graph.xAxisRange();
-    var range = axis[1] - axis[0];
-
-    var updatedAxis;
-
-    var deltaL = range * 0.01;
-    var deltaR = range * 0.01;
-
-    if (zoomIn) {
-        updatedAxis = [axis[0] + deltaL, axis[1] - deltaR];
-    } else {
-        updatedAxis = [axis[0] - deltaL, axis[1] + deltaR];
-    }
-
-    graph.updateOptions({ dateWindow: newAxis });
 }
