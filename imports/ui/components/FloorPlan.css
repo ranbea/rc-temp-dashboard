@@ -1,8 +1,16 @@
-.unused-area-image {
-    max-width: 100%;
-    height: auto;
+.floor-plan {
+    min-width: 200px;
+    min-height: 158px;
+    max-width: 500px;
+    max-height: 396px;
+    position: relative;
+    top: -7.75vw;
 }
 
+.unused-area-image {
+    width: 100%;
+    height: auto;
+}
 
 .small-rooms-container {
     flex-wrap: nowrap;
@@ -15,5 +23,5 @@
 .large-room-container {
     width: calc(100% * 2.5 / 6);
     position: relative;
-    top: 7.75vw;
+    bottom: -7.75vw;
 }
