@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Meteor } from 'meteor/meteor';
 import Dygraph from 'dygraphs';
 import { Data } from '../../api/data.js';
-import { formatData } from '../utils/DataUtil.js';
+import { formatData, getAveTemp } from '../utils/DataUtil.js';
 import { Grid } from '@material-ui/core';
 import './Graph.css';
 import { graphHandler } from '../utils/GraphUtil';
@@ -13,7 +13,8 @@ const Graph = ({
         endDate,
         setEndDate,
         sample,
-        rooms
+        roomsVisibility,
+        setAveTemp
     }) => {
     
     const [graph, setGraph] = useState(null);
@@ -33,7 +34,9 @@ const Graph = ({
          */
         Meteor.subscribe("data", [startDate, endDate], () =>{
             const data = Data.find({"date" : { $gte: startDate, $lt: endDate }}).fetch();
+            setAveTemp(getAveTemp(data));
             var initialData = formatData(data, sample);
+
             setGraph(
                 new Dygraph(
                     "dygraph", initialData, 
@@ -44,7 +47,6 @@ const Graph = ({
                     }
                 )
             );
-            
         })
 
         if (hasGraph) {
@@ -64,11 +66,13 @@ const Graph = ({
             // Fetch data to put in graph
             Meteor.subscribe("data", [startDate, endDate], () => {
                 const data = Data.find({"date" : { $gte: startDate, $lt: endDate }}).fetch();
+                setAveTemp(getAveTemp(data));
 
                 // Set file as 2D array generated from formatting
                 var formattedData = formatData(data, sample);
-                graph.updateOptions({ file: formattedData })
+                graph.updateOptions({ file: formattedData });
             });
+
             graph.xAxisRange()[0] = startDate.getTime();
             graph.xAxisRange()[1] = endDate.getTime();
         }
@@ -79,17 +83,16 @@ const Graph = ({
      */
     useEffect(() => {
         if (hasGraph) {
-            for (let i = 0; i < rooms.length; i++) {
-                graph.setVisibility(i, rooms[i]);
+            for (let i = 0; i < roomsVisibility.length; i++) {
+                graph.setVisibility(i, roomsVisibility[i]);
             }
         }
-    }, [rooms])
+    }, [roomsVisibility])
 
     return(
         <Grid container className="dygraph-container" justify="center">
             <Grid item xs={10} id="dygraph"/>   {/* Graph injected into div */}
-            <Grid item xs={12}> {/* LEGEND */}
-            </Grid>
+            <Grid item xs={12} id="dygraph-legend"/> 
         </Grid>
     );
 }

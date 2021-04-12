@@ -16,6 +16,7 @@ export const App = () => {
 	const [endDate, setEndDate] = useState(new Date("2013-10-12T14:45:00"));
 	const [sample, setSample] = useState(16);
 	const [roomsVisibility, setRoomsVisibility] = useState([true, true, true, true, true, true, true]);	// State of room toggle on/off
+	const [aveTemp, setAveTemp] = useState([20, 20, 20, 20, 20, 20, 20]);
 
 	const updateRoomVisibility = (roomNum, isRoomVisible) => {
 		const visibility = [...roomsVisibility];
@@ -42,13 +43,15 @@ export const App = () => {
 						endDate={endDate}
 						setEndDate={setEndDate}
 						sample={sample}
-						rooms={roomsVisibility}
+						roomsVisibility={roomsVisibility}
+						setAveTemp={setAveTemp}
 					/>
 				</GraphContainer>
 				<FloorPlanContainer>
 					<FloorPlan
 						roomVisibility={roomsVisibility}
 						roomVisibilityCallback={updateRoomVisibility}
+						aveTemp={aveTemp}
 					/>
 				</FloorPlanContainer>
 			</Grid>
