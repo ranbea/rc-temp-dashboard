@@ -2,28 +2,31 @@ import 'date-fns';
 import React from 'react';
 import DateFnsUtils from '@date-io/date-fns';
 
-import { Grid, Box, Typography, Slider, TextField } from '@material-ui/core';
+import { Grid, Typography, Slider, TextField } from '@material-ui/core';
 import { 
     MuiPickersUtilsProvider,
     KeyboardDatePicker,
-    KeyboardTimePicker,
+    KeyboardTimePicker
 } from '@material-ui/pickers';
 
 import './GraphController.css';
 
-const GraphControls = () => {
+/**
+ * Parameters passed to GraphControls from Graph component
+ */
+const GraphControls = ({startDate, endDate, setStartDate, setEndDate, sample, setSample}) => {
 
-    const [startDate, setStartDate] = React.useState(Date.now());
-    const [endDate, setEndDate] = React.useState(Date.now());
+    const calculateStep = (n) => {
+        for (let i = 1; i <= 12; i++) {
+            if (n == Math.pow(2, i)) {
+                return i;
+            } 
 
-    const handleStartDateChange = (e) => {
-        setStartDate(e.target.value);
-        console.log(e.target.value);
-    }
-
-    const handleEndDate = (e) => {
-        setEndDate(e.target.value);
-        console.log(e.target.value);
+            if (n < Math.pow(2, i)) {
+                return i;
+            }
+        }
+        return null;
     }
 
     return(
@@ -37,21 +40,33 @@ const GraphControls = () => {
                         margin="normal"
                         id="start-date-picker"
                         label="Start Date"
-                        value={startDate}
-                        onChange={handleStartDateChange}
+                        value={ startDate }
+                        onChange={ (d) => setStartDate(d) }
                         KeyboardButtonProps={{
                             'aria-label': 'change date',
                         }}
                     />
                 </Grid>
                 <Grid item sm={2}>
+                    <KeyboardTimePicker
+                        margin="normal"
+                        id="time-picker"
+                        label="End Time"
+                        value={ startDate.getTime() }
+                        onChange={ (d) => setStartDate(d) }
+                        KeyboardButtonProps={{
+                            'aria-label': 'change time',
+                        }}
+                    />
+                    {/* 
                     <form className="time-picker-container">
                         <TextField
                             id="start-time"
                             label="Start Time"
                             type="time"
-                            defaultValue="07:45"
                             className="time-picker"
+                            value={ startDate.getTime().toString() }
+                            onChange= { (d) => setStartDate(d) }
                             InputLabelProps={{
                                 shrink: true,
                             }}
@@ -60,6 +75,7 @@ const GraphControls = () => {
                             }}
                         />
                     </form>
+                    */}
                 </Grid>
                 <Grid item sm={2}>
                     <KeyboardDatePicker
@@ -69,21 +85,33 @@ const GraphControls = () => {
                         margin="normal"
                         id="end-date-picker"
                         label="End Date"
-                        value={endDate}
-                        onChange={handleEndDate}
+                        value={ endDate }
+                        onChange={ (d) => setEndDate(d) }
                         KeyboardButtonProps={{
                             'aria-label': 'change date',
                         }}
                     />
                 </Grid>
                 <Grid item sm={2}>
+                    <KeyboardTimePicker
+                        margin="normal"
+                        id="time-picker"
+                        label="End Time"
+                        value={ endDate.getTime() }
+                        onChange={ (d) => setEndDate(d) }
+                        KeyboardButtonProps={{
+                            'aria-label': 'change time',
+                        }}
+                    />
+                    {/* 
                     <form className="time-picker-container">
                         <TextField
                             id="end-time"
                             label="End time"
                             type="time"
-                            defaultValue="07:45"
                             className="time-picker"
+                            value={ endDate.getTime().toString() }
+                            onChange={ (d) => setEndDate(d) }
                             InputLabelProps={{
                                 shrink: true,
                             }}
@@ -91,19 +119,22 @@ const GraphControls = () => {
                                 step: 900, // 15 min
                             }}
                         />
-                    </form>
+                    </form>*/}
                 </Grid>
                 <Grid item sm={3}>
                     <Typography id="slider" gutterBottom>
                         Sample Size
                     </Typography>
                     <Slider
-                        defaultValue={30}
-                        valueLabelDisplay="auto"
-                        step={10}
                         marks
-                        min={10}
-                        max={110}
+                        valueLabelDisplay="auto"
+                        step={1}
+                        min={1}
+                        max={12}
+                        value={calculateStep(sample)}
+                        onChange={(e, v) => { setSample(2 ** v)} }
+                        valueLabelFormat={(x) => "2^"+x}
+                        getAriaValueText={(x) => "2^"+x} 
                     />
                 </Grid>
             </Grid>

@@ -16,7 +16,8 @@
     "dygraphs": "^2.1.0",
     "meteor-node-stubs": "^1.0.1",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-papaparse": "^3.11.1"
   },
   "meteor": {
     "mainModule": {
