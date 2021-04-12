@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import "./RoomButton.css";
 
 // callback is called upon button click, to change the graph's display
-const RoomButton = ({ label, callback }) => {
+const RoomButton = ({ roomNum, roomVisibilityCallback, isTempVisible, avgTemp }) => {
 
   const COLOUR_COOLEST = "#D2E6FF";
   const COLOUR_WARMEST = "#779AC5";
@@ -12,35 +12,16 @@ const RoomButton = ({ label, callback }) => {
   const TEMPORARY_MAX = 50;
   const TEMPORARY_RANGE = TEMPORARY_MAX - TEMPORARY_MIN;
 
-  const [averageTemp, setAverageTemp] = useState(22.0);
-  const [shouldDisplay, setShouldDisplay] = useState(false);
-  const [currColour, setCurrColour] = useState(COLOUR_DEFAULT);
-
   const handleButtonClick = () => {
-    const newShouldDisplay = !shouldDisplay;
-    if (newShouldDisplay) {
-      // TODO: callback(label) to update graph
+    roomVisibilityCallback(roomNum, !isTempVisible);
+  }
 
-      // TODO: upon armed, start listening to changes in average temp for this room
-
-
-      const temporaryNewTemperature = Math.random() * (TEMPORARY_MAX - TEMPORARY_MIN) + TEMPORARY_MIN;
-
-      // TODO: shift below code to event listener handler
-      const ratio = temporaryNewTemperature / TEMPORARY_RANGE;
-      const newColour = lerpColour(COLOUR_COOLEST, COLOUR_WARMEST, ratio);
-
-      setCurrColour(newColour);
-      setAverageTemp(temporaryNewTemperature);
-
-    } else {
-      // TODO: upon unarmed, stop listening to these changes
-
-      // reset background colour
-      setCurrColour(COLOUR_DEFAULT);
+  const getColour = (temp) => {
+    if (!isTempVisible) {
+      return COLOUR_DEFAULT;
     }
-
-    setShouldDisplay(newShouldDisplay);
+    const ratio = temp / TEMPORARY_RANGE;
+    return lerpColour(COLOUR_COOLEST, COLOUR_WARMEST, ratio);
   }
 
   const lerpColour = (a, b, ratio) => {
@@ -70,7 +51,7 @@ const RoomButton = ({ label, callback }) => {
         <rect
           width="100%"
           height="100%"
-          fill={currColour}
+          fill={getColour(avgTemp)}
           stroke="#5A5A5A"
           strokeWidth='1px'
         />
@@ -84,9 +65,9 @@ const RoomButton = ({ label, callback }) => {
           textAnchor="end"
           dominantBaseline="hanging"
         >
-          {label}
+          {`R${roomNum}`}
         </text>
-        { shouldDisplay && (
+        { isTempVisible && (
           <text
             x="50%"
             y="50%"
@@ -96,7 +77,7 @@ const RoomButton = ({ label, callback }) => {
             textAnchor="middle"
             dominantBaseline="middle"
           >
-            {averageTemp.toFixed(1)}
+            {avgTemp.toFixed(1)}
           </text>
         )}
         <defs>

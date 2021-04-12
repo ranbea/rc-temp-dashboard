@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
+import * as Papa from 'papaparse';
 import { Data } from '../imports/api/data.js';
 import { formatData } from './formatter.js';
-import * as Papa from 'papaparse';
 
 /**
  * Publish data collection
@@ -23,11 +23,11 @@ import * as Papa from 'papaparse';
  */
 Meteor.startup(() => {
     const data_file = Assets.getText('room-temperatures.csv');
-    
+
     console.log("Parsing data...");
     const parsed_data = Papa.parse(data_file).data;
     console.log("Parsed " + parsed_data.length + " rows");
-    
+
     console.log("Formatting data... Will take about to 2 minutes");
     const formatted_data = formatData(parsed_data);
     console.log("Data formatting complete: formatted", formatted_data.length, "items");
