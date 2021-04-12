@@ -1,7 +1,14 @@
-svg:hover {
+
+
+svg {
     filter: url("#outer-drop-shadow");
 }
 
-svg:active {
-    filter: url("#inset-shadow");
+svg:hover {
+    filter: brightness(0.9) url("#outer-drop-shadow");
 }
+
+svg:active {
+    filter: brightness(0.9) url("#inset-shadow");
+}
+

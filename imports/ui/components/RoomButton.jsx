@@ -4,9 +4,10 @@ import "./RoomButton.css";
 const RoomButton = ({ roomNum, roomVisibilityCallback, isTempVisible, avgTemp }) => {
 
   // The colour codes for the cell background
-  const COLOUR_COOLEST = "#D2E6FF";
-  const COLOUR_WARMEST = "#779AC5";
+  const COLOUR_COOLEST = "#4BF4FF";
+  const COLOUR_WARMEST = "#4087DA";
   const COLOUR_DEFAULT = "#E4E4E4";
+  const COLOUR_NOT_APPLICABLE = "#FFFFFF";
 
   // The default min and max temperature range, used to calculate the colour of the cell
   const TEMPERATURE_MIN = 5;
@@ -21,20 +22,19 @@ const RoomButton = ({ roomNum, roomVisibilityCallback, isTempVisible, avgTemp })
   }
 
   /**
-   * Method to get the colour of the cell for the temperature at ${temp}, according to the cell's temperature
-   * visibility status
+   * Method to get the colour of the cell for the current average temperature
    */
-  const getColour = (temp) => {
+  const getColour = () => {
     if (!isTempVisible) {
       return COLOUR_DEFAULT;
     }
 
-    if (Number.isNaN(temp) || temp < TEMPERATURE_MIN || temp > TEMPERATURE_MAX)
+    if (Number.isNaN(avgTemp))
     {
-      return COLOUR_DEFAULT;
+      return COLOUR_NOT_APPLICABLE;
     }
 
-    const ratio = temp / TEMPERATURE_RANGE;
+    const ratio = avgTemp / TEMPERATURE_RANGE;
     return lerpColour(COLOUR_COOLEST, COLOUR_WARMEST, ratio);
   }
 
@@ -65,15 +65,25 @@ const RoomButton = ({ roomNum, roomVisibilityCallback, isTempVisible, avgTemp })
     return "#" + mixedHex;
   }
 
+  /**
+   * Method to get the current average temperature, formatted to 1 decimal place
+   */
+  const getFormattedTemp = () => {
+    if (Number.isNaN(avgTemp)) {
+      return "N/A";
+    }
+    return avgTemp.toFixed(1);
+  }
+
   return (
     <>
       <svg height="10vw" width="100%" xmlns="http://www.w3.org/2000/svg" onClick={handleButtonClick}>
         <rect
           width="100%"
           height="100%"
-          fill={getColour(avgTemp)}
+          fill={getColour()}
           stroke="#5A5A5A"
-          strokeWidth='1px'
+          strokeWidth='0.5px'
         />
         <text
           x="95%"
@@ -97,17 +107,18 @@ const RoomButton = ({ roomNum, roomVisibilityCallback, isTempVisible, avgTemp })
             textAnchor="middle"
             dominantBaseline="middle"
           >
-            {avgTemp.toFixed(1)}
+            {getFormattedTemp()}
           </text>
         )}
         <defs>
           <filter id="outer-drop-shadow">
-            <feDropShadow dx="0" dy="0" stdDeviation="1" />
+            <feDropShadow floodColor="#575757" dx="0" dy="2" stdDeviation="0.75" result="shadow"/>
           </filter>
           <filter id="inset-shadow">
-            <feGaussianBlur stdDeviation="5" result="blur"/>
-            <feComposite operator="out" in="SourceGraphic" in2="blur" result="inverse"/>
-            <feFlood floodColor="black" floodOpacity="0.75" result="color"/>
+            <feGaussianBlur stdDeviation="1" result="blur"/>
+            <feOffset in="blur" dx="0" dy="2" result="offset"/>
+            <feComposite operator="out" in="SourceGraphic" in2="offset" result="inverse"/>
+            <feFlood floodColor="black" floodOpacity="1" result="color"/>
             <feComposite operator="in" in="color" in2="inverse" result="shadow"/>
             <feComposite operator="over" in="shadow" in2="SourceGraphic"/>
           </filter>
