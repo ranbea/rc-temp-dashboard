@@ -10,13 +10,13 @@ export function formatData(data) {
             return ({
                 "date": d,
                 "temp": {
-                    "0": 1.000,
-                    "1": 1.000,
-                    "2": 1.000,
-                    "3": 1.000,
-                    "4": 1.000,
-                    "5": 1.000,
-                    "6": 1.000
+                    "0": null,
+                    "1": null,
+                    "2": null,
+                    "3": null,
+                    "4": null,
+                    "5": null,
+                    "6": null,
                 }
             });
         }
