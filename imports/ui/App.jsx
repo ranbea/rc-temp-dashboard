@@ -26,7 +26,7 @@ export const App = () => {
 
 	return(
 		<Container maxWidth="xl">
-			<Grid container spacing={0}>
+			<Grid container spacing={0} direction="row" justify="flex-start">
 				<MainHeader/>
 				<GraphContainer>
 					<GraphControls

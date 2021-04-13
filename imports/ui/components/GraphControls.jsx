@@ -32,7 +32,7 @@ const GraphControls = ({startDate, endDate, setStartDate, setEndDate, sample, se
     return(
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Grid container justify="center" spacing={4}>
-                <Grid item sm={2}>
+                <Grid item xs={8} sm={8} md={5} lg={2}>
                     <KeyboardDatePicker
                         disableToolbar
                         variant="inline"
@@ -47,11 +47,11 @@ const GraphControls = ({startDate, endDate, setStartDate, setEndDate, sample, se
                         }}
                     />
                 </Grid>
-                <Grid item sm={2}>
+                <Grid item xs={8} sm={8} md={5} lg={2}>
                     <KeyboardTimePicker
                         margin="normal"
                         id="time-picker"
-                        label="End Time"
+                        label="Start Time"
                         value={ startDate.getTime() }
                         onChange={ (d) => setStartDate(d) }
                         KeyboardButtonProps={{
@@ -77,7 +77,7 @@ const GraphControls = ({startDate, endDate, setStartDate, setEndDate, sample, se
                     </form>
                     */}
                 </Grid>
-                <Grid item sm={2}>
+                <Grid item xs={8} sm={8} md={5} lg={2}>
                     <KeyboardDatePicker
                         disableToolbar
                         variant="inline"
@@ -92,7 +92,7 @@ const GraphControls = ({startDate, endDate, setStartDate, setEndDate, sample, se
                         }}
                     />
                 </Grid>
-                <Grid item sm={2}>
+                <Grid item xs={8} sm={8} md={5} lg={2}>
                     <KeyboardTimePicker
                         margin="normal"
                         id="time-picker"
@@ -121,7 +121,7 @@ const GraphControls = ({startDate, endDate, setStartDate, setEndDate, sample, se
                         />
                     </form>*/}
                 </Grid>
-                <Grid item sm={3}>
+                <Grid item xs={8} sm={8} md={10} lg={2}>
                     <Typography id="slider" gutterBottom>
                         Sample Size
                     </Typography>
