@@ -1,7 +1,11 @@
 import React from 'react';
 import "./RoomButton.css";
 
-const RoomButton = ({ roomNum, roomVisibilityCallback, isTempVisible, avgTemp }) => {
+/**
+ * The View and ViewModel of the RoomButton cells.
+ * RoomButton calls roomVisibilityCallback to update the room's visibility status in the global state
+ */
+const RoomButton = ({ roomNum, roomVisibilityCallback, isTempVisible, aveTemp }) => {
 
   // The colour codes for the cell background
   const COLOUR_COOLEST = "#4BF4FF";
@@ -29,12 +33,12 @@ const RoomButton = ({ roomNum, roomVisibilityCallback, isTempVisible, avgTemp })
       return COLOUR_DEFAULT;
     }
 
-    if (Number.isNaN(avgTemp))
+    if (Number.isNaN(aveTemp))
     {
       return COLOUR_NOT_APPLICABLE;
     }
 
-    const ratio = avgTemp / TEMPERATURE_RANGE;
+    const ratio = aveTemp / TEMPERATURE_RANGE;
     return lerpColour(COLOUR_COOLEST, COLOUR_WARMEST, ratio);
   }
 
@@ -69,15 +73,15 @@ const RoomButton = ({ roomNum, roomVisibilityCallback, isTempVisible, avgTemp })
    * Method to get the current average temperature, formatted to 1 decimal place
    */
   const getFormattedTemp = () => {
-    if (Number.isNaN(avgTemp)) {
+    if (Number.isNaN(aveTemp)) {
       return "N/A";
     }
-    return avgTemp.toFixed(1);
+    return aveTemp.toFixed(1);
   }
 
   return (
     <>
-      <svg height="10vw" width="100%" xmlns="http://www.w3.org/2000/svg" onClick={handleButtonClick}>
+      <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg" onClick={handleButtonClick}>
         <rect
           width="100%"
           height="100%"
@@ -88,7 +92,7 @@ const RoomButton = ({ roomNum, roomVisibilityCallback, isTempVisible, avgTemp })
         <text
           x="95%"
           y="5%"
-          fontSize="2vw"
+          fontSize="1.5rem"
           fontFamily="OpenSans"
           fontWeight="600"
           fill="black"
@@ -101,7 +105,7 @@ const RoomButton = ({ roomNum, roomVisibilityCallback, isTempVisible, avgTemp })
           <text
             x="50%"
             y="50%"
-            fontSize="1.75vw"
+            fontSize="1.25rem"
             fontFamily="RobotoMono"
             fill="black"
             textAnchor="middle"

@@ -50,7 +50,7 @@ export const App = () => {
 				<FloorPlanContainer>
 					<FloorPlan
 						roomVisibility={roomsVisibility}
-						roomVisibilityCallback={updateRoomVisibility}
+						setRoomVisibilityCallback={updateRoomVisibility}
 						aveTemp={aveTemp}
 					/>
 				</FloorPlanContainer>

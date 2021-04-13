@@ -2,7 +2,7 @@ import 'date-fns';
 import React from 'react';
 import DateFnsUtils from '@date-io/date-fns';
 
-import { Grid, Typography, Slider, TextField } from '@material-ui/core';
+import { Grid, Typography, Slider } from '@material-ui/core';
 import { 
     MuiPickersUtilsProvider,
     KeyboardDatePicker,
@@ -18,7 +18,7 @@ const GraphControls = ({startDate, endDate, setStartDate, setEndDate, sample, se
 
     const calculateStep = (n) => {
         for (let i = 1; i <= 12; i++) {
-            if (n == Math.pow(2, i)) {
+            if (n === Math.pow(2, i)) {
                 return i;
             } 
 
@@ -58,24 +58,6 @@ const GraphControls = ({startDate, endDate, setStartDate, setEndDate, sample, se
                             'aria-label': 'change time',
                         }}
                     />
-                    {/* 
-                    <form className="time-picker-container">
-                        <TextField
-                            id="start-time"
-                            label="Start Time"
-                            type="time"
-                            className="time-picker"
-                            value={ startDate.getTime().toString() }
-                            onChange= { (d) => setStartDate(d) }
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                            inputProps={{
-                                step: 900, // 15 min
-                            }}
-                        />
-                    </form>
-                    */}
                 </Grid>
                 <Grid item xs={8} sm={8} md={5} lg={2}>
                     <KeyboardDatePicker
@@ -103,23 +85,6 @@ const GraphControls = ({startDate, endDate, setStartDate, setEndDate, sample, se
                             'aria-label': 'change time',
                         }}
                     />
-                    {/* 
-                    <form className="time-picker-container">
-                        <TextField
-                            id="end-time"
-                            label="End time"
-                            type="time"
-                            className="time-picker"
-                            value={ endDate.getTime().toString() }
-                            onChange={ (d) => setEndDate(d) }
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                            inputProps={{
-                                step: 900, // 15 min
-                            }}
-                        />
-                    </form>*/}
                 </Grid>
                 <Grid item xs={8} sm={8} md={10} lg={2}>
                     <Typography id="slider" gutterBottom>
