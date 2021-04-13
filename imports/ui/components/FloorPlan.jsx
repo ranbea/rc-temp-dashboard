@@ -10,8 +10,8 @@ const FloorPlan = ({ roomVisibility, setRoomVisibilityCallback, aveTemp }) => {
 
   return (
     <>
-      <div className="floor-plan" >
-        <div className="large-room-container">
+      <div className="floor-plan-wrapper">
+        <div className="large-room">
           <RoomButton
             roomNum="0"
             isTempVisible={roomVisibility[0]}
@@ -26,6 +26,7 @@ const FloorPlan = ({ roomVisibility, setRoomVisibilityCallback, aveTemp }) => {
               roomVisibility
                 .slice(1, roomVisibility.length)
                 .map((visible, index) => <RoomButton
+                      className="small-room"
                       roomNum={index + 1}
                       isTempVisible={visible}
                       roomVisibilityCallback={setRoomVisibilityCallback}

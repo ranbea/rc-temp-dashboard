@@ -81,7 +81,7 @@ const RoomButton = ({ roomNum, roomVisibilityCallback, isTempVisible, aveTemp })
 
   return (
     <>
-      <svg height="10vw" width="100%" xmlns="http://www.w3.org/2000/svg" onClick={handleButtonClick}>
+      <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg" onClick={handleButtonClick}>
         <rect
           width="100%"
           height="100%"
@@ -92,7 +92,7 @@ const RoomButton = ({ roomNum, roomVisibilityCallback, isTempVisible, aveTemp })
         <text
           x="95%"
           y="5%"
-          fontSize="2vw"
+          fontSize="1.5rem"
           fontFamily="OpenSans"
           fontWeight="600"
           fill="black"
@@ -105,7 +105,7 @@ const RoomButton = ({ roomNum, roomVisibilityCallback, isTempVisible, aveTemp })
           <text
             x="50%"
             y="50%"
-            fontSize="1.75vw"
+            fontSize="1.25rem"
             fontFamily="RobotoMono"
             fill="black"
             textAnchor="middle"
