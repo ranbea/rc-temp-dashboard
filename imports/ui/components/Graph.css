@@ -35,7 +35,7 @@
 }
 
 .dygraph-label {
-    width: 15%;
+    width: 100px;
     padding: 10px 10px;
     display: flex;
 }
