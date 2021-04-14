@@ -19,7 +19,7 @@ const FloorPlan = ({ roomVisibility, setRoomVisibilityCallback, aveTemp }) => {
             aveTemp={aveTemp[0]}
           />
         </div>
-        <img className="unused-area-image" alt="unused area" src="images/floorPlanUnusedSpace.png" />
+        <img className="unused-area-image" alt="unused area" src="images/floorPlanUnusedSpace_compressed.png" />
         <div className="small-rooms-container">
           {
             (

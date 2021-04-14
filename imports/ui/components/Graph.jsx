@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import Dygraph from 'dygraphs';
 import { Data } from '../../api/data.js';
 import { formatData, getAveTemp } from '../utils/DataUtil.js';
-import { Grid } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
 import './Graph.css';
 import { formatLegend, graphHandler } from '../utils/GraphUtil';
 import moment from 'moment';
