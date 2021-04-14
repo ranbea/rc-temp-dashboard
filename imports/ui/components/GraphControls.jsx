@@ -1,6 +1,7 @@
 import 'date-fns';
 import React from 'react';
 import DateFnsUtils from '@date-io/date-fns';
+import ScheduleIcon from '@material-ui/icons/Schedule';
 
 import { Grid, Typography, Slider } from '@material-ui/core';
 import { 
@@ -57,6 +58,7 @@ const GraphControls = ({startDate, endDate, setStartDate, setEndDate, sample, se
                         KeyboardButtonProps={{
                             'aria-label': 'change time',
                         }}
+                        keyboardIcon={<ScheduleIcon />}
                     />
                 </Grid>
                 <Grid item xs={8} sm={8} md={5} lg={2}>
@@ -84,6 +86,7 @@ const GraphControls = ({startDate, endDate, setStartDate, setEndDate, sample, se
                         KeyboardButtonProps={{
                             'aria-label': 'change time',
                         }}
+                        keyboardIcon={<ScheduleIcon />}
                     />
                 </Grid>
                 <Grid item xs={8} sm={8} md={10} lg={2}>
