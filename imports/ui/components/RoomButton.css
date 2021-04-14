@@ -1,11 +1,10 @@
-
-
 svg {
     filter: url("#outer-drop-shadow");
 }
 
 svg:hover {
     filter: brightness(0.9) url("#outer-drop-shadow");
+    cursor: pointer;
 }
 
 svg:active {
