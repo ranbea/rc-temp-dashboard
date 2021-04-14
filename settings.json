@@ -1,7 +1,0 @@
-{
-    "galaxy.meteor.com": {
-        "env": {
-            "MONGO_URL": "mongodb://beatricetay:64zgBgraetxE8fP4@temperature-data-shard-00-00.duv3p.mongodb.net:27017,temperature-data-shard-00-01.duv3p.mongodb.net:27017,temperature-data-shard-00-02.duv3p.mongodb.net:27017/Data?ssl=true&replicaSet=atlas-r45tbw-shard-0&authSource=admin&retryWrites=true&w=majority"
-        }
-    }
-}
