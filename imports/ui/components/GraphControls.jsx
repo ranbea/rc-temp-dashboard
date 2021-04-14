@@ -2,14 +2,10 @@ import 'date-fns';
 import React from 'react';
 import DateFnsUtils from '@date-io/date-fns';
 import ScheduleIcon from '@material-ui/icons/Schedule';
-
-import { Grid, Typography, Slider } from '@material-ui/core';
-import { 
-    MuiPickersUtilsProvider,
-    KeyboardDatePicker,
-    KeyboardTimePicker
-} from '@material-ui/pickers';
-
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import Slider from '@material-ui/core/Slider';
+import { KeyboardDatePicker, KeyboardTimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import './GraphController.css';
 
 /**
